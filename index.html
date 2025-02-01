@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>College Result Portal</h2>
+    <label for="hallticket">Enter Hall Ticket Number:</label>
+    <input type="text" id="hallticket" />
+    <button onclick="generateResult()">Get Result</button>
+    <div id="result"></div>
+
+    <script>
+        function generateResult() {
+            let hallticket = document.getElementById('hallticket').value;
+            if (hallticket.trim() === '') {
+                alert("Please enter a valid Hall Ticket Number");
+                return;
+            }
+            
+            let subjects = ["ENGLISH", "EVS", "ANATOMY", "PHYSIOLOGY", "PATHOLOGY", "BRM"];
+            let resultTable = `<h3>Results for Hall Ticket: ${hallticket}</h3><table><tr><th>Subject</th><th>Result</th></tr>`;
+            
+            subjects.forEach(subject => {
+                let status = Math.random() > 0.3 ? "Pass" : "Fail";
+                resultTable += `<tr><td>${subject}</td><td>${status}</td></tr>`;
+            });
+            
+            resultTable += "</table>";
+            document.getElementById('result').innerHTML = resultTable;
+        }
+    </script>
+</body>
+</html>
